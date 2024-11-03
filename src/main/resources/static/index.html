@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascota Virtual</title>
+    <!-- Enlace para cargar la fuente Orbitron desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styling for the form */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e2f;
+            color: #d8dee9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #app {
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+            background: #292b3e;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(157, 0, 255, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #9a5ccc;
+            text-shadow: 0px 0px 10px #5dfb5d;
+        }
+
+        #forms, .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: #292b3e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(93, 251, 93, 0.5);
+        }
+
+        label {
+            color: #b1e6a9;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        input, select {
+            background-color: #1e1e2f;
+            color: #d8dee9;
+            border: 1px solid #5dfb5d;
+        }
+
+        button {
+            background-color: #9a5ccc;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px #6b3384;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: #6b3384;
+            box-shadow: 0 5px #9a5ccc;
+        }
+
+        p {
+            text-align: center;
+            color: #d8dee9;
+        }
+
+        p a {
+            color: #5dfb5d;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Mascota Virtual</h1>
+    <div id="forms">
+        <!-- Login Form -->
+        <form id="login-form">
+            <h2>Iniciar Sesión</h2>
+            <label for="login-username">Nombre de Usuario:</label>
+            <input type="text" id="login-username" name="username" required>
+            <label for="login-password">Contraseña:</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="submit">Entrar</button>
+            <p>¿No tienes una cuenta? <a href="#" id="show-register-form">Regístrate</a></p>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" style="display: none;">
+            <h2>Registrarse</h2>
+            <label for="register-username">Nombre de Usuario:</label>
+            <input type="text" id="register-username" name="username" required>
+            <label for="register-password">Contraseña:</label>
+            <input type="password" id="register-password" name="password" required>
+            <label for="register-role">Rol:</label>
+            <select id="register-role" name="role">
+                <option value="USER">Usuario</option>
+                <option value="ADMIN">Administrador</option>
+            </select>
+            <button type="submit">Registrarse</button>
+            <p>¿Ya tienes una cuenta? <a href="#" id="show-login-form">Inicia Sesión</a></p>
+        </form>
+    </div>
+
+    <!-- Main Content with User Options and Pet Display -->
+    <div id="main-content" style="display: none;">
+        <div id="user-options">
+            <button id="create-pet-btn" class="action-btn create-btn" title="Crear una mascota">
+                <i class="fas fa-plus"></i> ➕
+
+            <button id="delete-pet-option" class="action-btn delete-btn" title="Eliminar Mascota">
+                <i class="fas fa-minus"></i>  🗑
+            </button>
+            </button>
+            <button id="my-pets-btn" class="action-btn pets-btn" title="Mis Mascotas">
+                <i class="fas fa-dog"></i> 👀
+            </button>
+            <button id="update-pet-option" class="action-btn update-btn" title="Actualizar Mascota: color, nombre o tipo">
+                <i class="fas fa-sync-alt"></i> 🔄
+            </button>
+            <button id="interact-pet-option" class="action-btn interact-btn" title="Interactuar con la mascota: jugar, comer y limpiarla">
+                <i class="fas fa-paw"></i>⚽ 🍉 🧼
+            </button>
+            <button id="all-pets-btn" class="action-btn all-pets-btn" style="display: none;" title="Muestra todas las mascotas de todos los usuarios">
+                <i class="fas fa-globe"></i> 🐙 (admin)
+            </button>
+            <button id="logout-btn" class="action-btn logout-btn" title="Cerrar Sesión">
+                <i class="fas fa-sign-out-alt"></i> 🔐
+            </button>
+        </div>
+        <div id="pet-display" style="background-image: url('background/underwater_background.jpg');">
+            <!-- Pets will be displayed here -->
+        </div>
+        <div id="pets-container" class="pets-container" style="display: none;">
+            <!-- Pets will be displayed here -->
+        </div>
+    </div>
+
+
+    <!-- Create Pet Form -->
+    <div id="create-pet-form" class="form-container" style="display:none;">
+        <h2>Crear Mascota</h2>
+        <form id="createPetForm">
+            <label for="pet-name">Nombre de la Mascota:</label>
+            <input type="text" id="pet-name" placeholder="Nombre de la Mascota" required>
+            <label for="pet-breed">Especie:</label>
+            <select id="pet-breed">
+                <option value="gamba">Gamba</option>
+                <option value="pulpito">Pulpito</option>
+            </select>
+            <label for="pet-color">Color:</label>
+            <select id="pet-color">
+                <option value="original">Original</option>
+                <option value="blue">Azul</option>
+                <option value="yellow">Amarillo</option>
+                <option value="green">Verde</option>
+            </select>
+            <button type="submit">Crear Mascota</button>
+            <button type="button" id="cancel-create-pet-btn">Cancelar</button>
+        </form>
+    </div>
+
+    <!-- Delete Pet Form -->
+    <div id="delete-pet-form" style="display: none;">
+        <h2>Eliminar Mascota</h2>
+        <input type="number" id="delete-pet-id" placeholder="ID de la Mascota">
+        <button id="delete-pet-button">Eliminar Mascota</button>
+        <button type="button" id="cancel-delete-pet-btn">Cancelar</button>
+    </div>
+
+    <!-- Update Pet Form -->
+    <div id="update-pet-form" style="display: none;">
+        <h2>Actualizar Mascota</h2>
+        <input type="number" id="update-pet-id" placeholder="ID de la Mascota">
+        <label for="update-field">Campo a Actualizar:</label>
+        <select id="update-field">
+            <option value="change_name">Cambiar Nombre</option>
+            <option value="change_color">Cambiar Color</option>
+            <option value="change_breed">Cambiar Especie</option>
+        </select>
+        <input type="text" id="update-value" placeholder="Nuevo Valor" style="display: none;">
+        <select id="update-breed" style="display: none;">
+            <option value="gamba">Gamba</option>
+            <option value="pulpito">Pulpito</option>
+        </select>
+        <select id="update-color" style="display: none;">
+            <option value="original">Original</option>
+            <option value="blue">Azul</option>
+            <option value="yellow">Amarillo</option>
+            <option value="green">Verde</option>
+        </select>
+        <button id="update-pet-button">Actualizar Mascota</button>
+        <button id="cancel-update-pet-btn">Cancelar</button>
+    </div>
+
+    <!-- Action Form -->
+    <div id="pet-action-form" style="display: none;">
+        <h2>Interactuar con Mascota</h2>
+        <input type="number" id="action-pet-id" placeholder="ID de la Mascota">
+        <label for="action-field">Acción:</label>
+        <select id="action-field">
+            <option value="play">⚽</option>
+            <option value="feed">🍉</option>
+            <option value="clean">🧼</option>
+        </select>
+        <button id="action-pet-button">Interactuar</button>
+        <button id="cancel-action-pet-btn">Cancelar</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
