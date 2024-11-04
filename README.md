@@ -1,6 +1,8 @@
 🐾 Virtual Pet API 🐾
 
 Welcome to the Virtual Pet API! This project allows users to interact with a virtual pet, managing its needs to keep it happy and healthy. Users can authenticate, manage pets, and perform various actions to maintain their pet’s wellbeing. Administrators have additional control over all pets in the system.
+
+
 📜 Project Description
 
 The Virtual Pet API provides endpoints for creating and managing user accounts, authenticating with JWT, and allowing users to interact with their pets. Each pet has attributes like health and happiness, which users must manage to keep their pet thriving. If the pet's health drops to zero, a visual indicator—a "death icon"—will appear, signaling that the pet urgently needs to be fed to restore its health. Administrators can view and manage all pets.
