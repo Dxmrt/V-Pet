@@ -17,6 +17,13 @@ The Virtual Pet API provides endpoints for creating and managing user accounts, 
 
 ## 🌈 Interface
 
+### Accessing the Index Page
+
+To access the application's index page, use the following URL in your browser:
+
+[http://localhost:8080/index.html](http://localhost:8080/index.html)
+
+
 #### Login Interface
 ![Login Interface](https://github.com/Dxmrt/Vpet/raw/master/src/main/java/com/virtualpet/vpet/VPet/images_git/loginvpet.png)
 
