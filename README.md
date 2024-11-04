@@ -1,9 +1,9 @@
-🐾 Virtual Pet API 🐾
+# 🐾 Virtual Pet API 🐾
 
 Welcome to the Virtual Pet API! This project allows users to interact with a virtual pet, managing its needs to keep it happy and healthy. Users can authenticate, manage pets, and perform various actions to maintain their pet’s wellbeing. Administrators have additional control over all pets in the system.
 
 
-📜 Project Description
+## 📜 Project Description
 
 The Virtual Pet API provides endpoints for creating and managing user accounts, authenticating with JWT, and allowing users to interact with their pets. Each pet has attributes like health and happiness, which users must manage to keep their pet thriving. If the pet's health drops to zero, a visual indicator—a "death icon"—will appear, signaling that the pet urgently needs to be fed to restore its health. Administrators can view and manage all pets.
 🚀 Technologies Used
@@ -15,7 +15,7 @@ The Virtual Pet API provides endpoints for creating and managing user accounts, 
 
     Note: MongoDB integration is planned for future updates to support additional features.
 
-🌈 Interface
+## 🌈 Interface
 
 #### Login Interface
 ![Login Interface](https://github.com/Dxmrt/Vpet/raw/master/src/main/java/com/virtualpet/vpet/VPet/images_git/loginvpet.png)
@@ -26,8 +26,8 @@ The Virtual Pet API provides endpoints for creating and managing user accounts, 
 #### Pet Status: Health Zero (Death Icon):
 ![Pet Death Icon](https://github.com/Dxmrt/Vpet/raw/master/src/main/java/com/virtualpet/vpet/VPet/images_git/gambitamuerta.png)
 
-Pet Death Icon
-🐾 Pet Management
+
+## 🐾 Pet Management
 
 Users can take care of their pets through various interactions. Key features include:
 
@@ -35,7 +35,7 @@ Users can take care of their pets through various interactions. Key features inc
     Feed the Pet: POST /virtualpet/user/pets/{petId}/feed - Increases the pet's health and happiness.
     Play with the Pet: POST /virtualpet/user/pets/{petId}/play - Boosts the pet's happiness.
 
-📊 Health Indicator
+## 📊 Health Indicator
 
 Each pet has a health attribute that must be maintained through regular care. When health reaches zero, the pet's icon changes to a "death icon," indicating the pet needs to be fed immediately to recover.
 
@@ -43,13 +43,13 @@ Each pet has a health attribute that must be maintained through regular care. Wh
 
     Pet Status: Health Zero (Death Icon)
 
-👑 Admin Privileges
+## 👑 Admin Privileges
 
 Admins have elevated access to manage all pets in the system:
 
     View All Pets: GET /virtualpet/admin/pets - Retrieves a list of all pets across users (requires admin privileges).
 
-📬 Using the API with Postman
+## 📬 Using the API with Postman
 
 To simplify testing and interaction with the Virtual Pet API, a pre-configured Postman collection is included. This collection contains all the essential endpoints for authentication, pet management, and admin functionalities.
 How to Use the Postman Collection:
@@ -68,7 +68,7 @@ How to Use the Postman Collection:
             jwt_token: This will hold your JWT token after login to authenticate requests.
         After logging in, copy the JWT token from the login response and paste it into the jwt_token environment variable to access protected endpoints.
 
-📄 Database Setup
+## 📄 Database Setup
 
 To set up the MySQL database for the Virtual Pet API, you can use the following SQL script.
 
@@ -104,12 +104,12 @@ CREATE TABLE pets (
 );
 ```
 
-Instructions
+## Instructions
 
     Copy the SQL script above.
     Run the script in your MySQL client or command line to create the necessary tables for the application.
 
-🛠️ Running the Project
+## 🛠️ Running the Project
 
     Clone the Repository:
 
@@ -127,7 +127,7 @@ bash
 
     ./mvnw spring-boot:run
 
-📝 Future Enhancements
+## 📝 Future Enhancements
 
     MongoDB for Accessories: Implement MongoDB to store accessories, allowing users to personalize and enhance their pets.
     Improved Visual Feedback: Introduce more visual cues and animations for pet status changes.
