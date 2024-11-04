@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "ea9a20d8-f1b7-42e0-9843-49d938115568",
+		"name": "Virtual Pet API",
+		"description": "A collection of API endpoints for the Virtual Pet API project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37924458"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"exampleUser\",\n    \"userPassword\": \"examplePassword\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/virtualpet/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userName\": \"exampleUser\",\n    \"userPassword\": \"examplePassword\",\n    \"userRole\": \"USER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/virtualpet/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Companion",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"petName\": \"PetName\",\n    \"petColor\": \"Color\",\n    \"petBreed\": \"Breed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/virtualpet/create",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View User's Companions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/virtualpet/user/pets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"user",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/virtualpet/user/delete/{{userId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"user",
+						"delete",
+						"{{userId}}"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Companion",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/virtualpet/pet/delete/{{petId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"pet",
+						"delete",
+						"{{petId}}"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Companion",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"update\": \"exampleField\",\n    \"change\": \"newValue\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/virtualpet/pet/update/{{petId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"pet",
+						"update",
+						"{{petId}}"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet Action",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"action\": \"play\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/virtualpet/pet/action/{{petId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"pet",
+						"action",
+						"{{petId}}"
+					],
+					"variable": [
+						{
+							"key": "petId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View All Companions (Admin)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/virtualpet/admin/pets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"admin",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Role",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/virtualpet/role",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"virtualpet",
+						"role"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
