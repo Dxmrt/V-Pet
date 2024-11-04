@@ -11,14 +11,14 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI().info(new Info().title("VirtualCompanion API").version("1.0"));
+        return new OpenAPI().info(new Info().title("Virtual Pet API with Spring Boot").version("1.0"));
     }
 
     @Bean
     public GroupedOpenApi publicApi() {
         return GroupedOpenApi.builder()
                 .group("virtual-pet")
-                .pathsToMatch("/petapp/**")
+                .pathsToMatch("/virtualpet/**")
                 .build();
     }
 }

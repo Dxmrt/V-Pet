@@ -1,5 +1,6 @@
 package com.virtualpet.vpet.VPet.exception.handler;
 
+import com.virtualpet.vpet.VPet.exception.AccessDeniedException;
 import com.virtualpet.vpet.VPet.exception.PetNotFoundException;
 import com.virtualpet.vpet.VPet.exception.UnauthorizedActionException;
 import com.virtualpet.vpet.VPet.exception.UserNotFoundException;
@@ -14,31 +15,27 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Maneja UserNotFoundException
+
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleUserNotFoundException(UserNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Map.of("error", e.getMessage()));
     }
 
-    // Maneja DataIntegrityViolationException para nombres de usuario duplicados
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Map<String, String>> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(Map.of("error", "Username already exists"));
+                .body(Map.of("error", "Este usuario ya existe"));
     }
 
-    // Maneja excepciones generales
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, String>> handleException(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("error", "An unexpected error occurred. Please try again."));
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<String> handleAccessDeniedException(AccessDeniedException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(PetNotFoundException.class)
-    public ResponseEntity<Map<String, String>> handlePetNotFoundException(PetNotFoundException e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(Map.of("error", e.getMessage()));
+    public ResponseEntity<String> handlePetNotFoundException(PetNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(UnauthorizedActionException.class)

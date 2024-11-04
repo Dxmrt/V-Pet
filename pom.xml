@@ -6,13 +6,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.virtualpet.virtualpet</groupId>
 	<artifactId>VirtualFuckinPet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Virtual-Pet</name>
-	<description>Spring Boot project to manage virtual pets</description>
+	<name>Virtual Pet with Spring Boot</name>
+	<description>Spring Boot with MySQL</description>
 	<url/>
 	<licenses>
 		<license/>

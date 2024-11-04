@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +27,7 @@ public class PetService {
         User user = findUserOrThrow(userId);
 
         if (user.getCompanionList().size() >= 3) {
-            return null;  // No necesita excepción, ya que la lógica lo permite
+            return null;
         }
 
         Companion companion = new Companion();
@@ -44,7 +43,7 @@ public class PetService {
                 .stream()
                 .filter(user -> user.getId().equals(userId))
                 .findFirst()
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado con ID: " + userId));
     }
 
     private void petInfo(Companion companion, String petName, String petColor, String petBreed) {
@@ -56,7 +55,7 @@ public class PetService {
         companion.setCleanliness(100);
     }
 
-    @Scheduled(fixedRate = 60000) // 60000 ms = 1 minuto
+    @Scheduled(fixedRate = 60000)
     public void decreaseStats() {
         List<Companion> allPets = petRepository.findAll();
         allPets.forEach(this::decreasePetStats);
@@ -73,7 +72,7 @@ public class PetService {
         Companion pet = findCompanionOrThrow(petId);
 
         if (!isAdmin && !isOwner(userId, petId)) {
-            throw new UnauthorizedActionException("User not authorized to delete this pet.");
+            throw new UnauthorizedActionException("Este usuario no tiene permiso para borrar esta mascota.");
         }
 
         petRepository.delete(pet);
@@ -81,7 +80,7 @@ public class PetService {
 
     private Companion findCompanionOrThrow(Long petId) {
         return petRepository.findById(petId)
-                .orElseThrow(() -> new PetNotFoundException("Pet not found with id: " + petId));
+                .orElseThrow(() -> new PetNotFoundException("Mascota no encontrada con ID: " + petId));
     }
 
     public Companion updateCompanion(Long petId, String update, String change) {

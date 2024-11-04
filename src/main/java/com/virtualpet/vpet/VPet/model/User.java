@@ -29,8 +29,6 @@ public class User {
     private String userPassword;
 
     private String capacity;
-
-    // Métodos adicionales
     @Setter
     @Getter
     @Column(name = "role", nullable = false)

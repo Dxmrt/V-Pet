@@ -1,4 +1,4 @@
-/* Configuración de box-sizing para evitar desbordamientos */
+
 *,
 *::before,
 *::after {
@@ -7,26 +7,26 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #1e1e2f; /* Fondo oscuro cyberpunk */
-    color: #d8dee9; /* Color de texto claro */
+    background-color: #1e1e2f;
+    color: #d8dee9;
 }
 
 h1 {
-    font-family: 'Orbitron', sans-serif; /* Fuente futurista */
+    font-family: 'Orbitron', sans-serif;
     text-align: center;
     margin-top: 20px;
-    font-size: 3.5rem; /* Tamaño mayor para mayor impacto */
-    color: #32CD32; /* Verde lima */
-    letter-spacing: 2px; /* Espaciado entre letras */
+    font-size: 3.5rem;
+    color: #32CD32;
+    letter-spacing: 2px;
     font-weight: bold;
-    text-shadow: 2px 2px 5px #4B0082; /* Relieve lila oscuro */
-    transform: scale(1.1); /* Efecto de agrandamiento permanente */
+    text-shadow: 2px 2px 5px #4B0082;
+    transform: scale(1.1);
 }
 
 
 h1:hover {
-    transform: scale(1.1); /* Efecto de agrandamiento en hover */
-    color: #32CD32; /* Cambia a un tono verde lima al pasar el cursor */
+    transform: scale(1.1);
+    color: #32CD32;
 }
 
 
@@ -37,7 +37,7 @@ h1:hover {
 }
 
 form {
-    background-color: #292b3e; /* Fondo oscuro para formularios */
+    background-color: #292b3e;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(157, 0, 255, 0.4);
@@ -46,23 +46,23 @@ form {
 label {
     display: block;
     margin-top: 10px;
-    color: #b1e6a9; /* Color verde suave para el texto */
+    color: #b1e6a9;
 }
 
 input, select {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
-    border: 2px solid #5dfb5d; /* Bordes verde neón */
+    border: 2px solid #5dfb5d;
     border-radius: 5px;
     background-color: #1e1e2f;
     color: #d8dee9;
     font-size: 1rem;
-    box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+    box-sizing: border-box;
 }
 
 input::placeholder {
-    color: #a5a5a5; /* Color gris claro para el placeholder */
+    color: #a5a5a5;
 }
 
 button {
@@ -92,13 +92,13 @@ button:hover {
 
 #user-options {
     display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
-    gap: 10px; /* Espacio entre los botones */
+    justify-content: center;
+    gap: 10px;
     text-align: center;
 }
 
 #user-options button {
-    width: 20%; /* Mantén el ancho de cada botón */
+    width: 20%;
     background-color: #292b3e;
     color: #9a5ccc;
     font-weight: bold;
@@ -117,56 +117,56 @@ button:hover {
 
 #pet-display {
     height: 400px;
-    background-image: url('/background/underwater_background.jpg'); /* Imagen de fondo */
+    background-image: url('/background/underwater_background.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
     border: 2px solid #9a5ccc;
     border-radius: 8px;
     padding: 10px;
-    overflow-y: auto; /* Permite desplazamiento si hay muchas mascotas */
+    overflow-y: auto;
 }
 
 .pet-image-container {
     position: relative;
     display: block;
-    z-index: 2; /* Asegura que las imágenes estén sobre el fondo */
+    z-index: 2;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(93, 251, 93, 0.5); /* Efecto de sombra verde */
+    box-shadow: 0 0 10px rgba(93, 251, 93, 0.5);
 }
 
 .pet-image {
-    width: 120px; /* Increase width */
-    height: 120px; /* Increase height */
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 5px;
-    transition: transform 0.2s ease; /* Smooth scale transition */
+    transition: transform 0.2s ease;
 }
 
 .pet-image, .death-image {
-    width: 100px; /* Ajusta el ancho al tamaño deseado */
-    height: auto; /* Mantiene la proporción de la imagen */
-    margin: 10px; /* Espacio alrededor de cada imagen */
+    width: 100px;
+    height: auto;
+    margin: 10px;
 }
 .pet-image-container {
-    display: inline-block; /* Permite que cada mascota se muestre en fila */
+    display: inline-block;
     text-align: center;
 }
 
 
 .pet-image-container:hover .pet-image {
-    transform: scale(1.1); /* Scale up the image slightly on hover */
+    transform: scale(1.1);
 }
 
 .pet-info-user {
-    display: none; /* Hide by default */
+    display: none;
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.75);
-    color: #5dfb5d; /* Neon green text */
+    color: #5dfb5d;
     padding: 5px;
     border-radius: 5px;
     font-size: 0.9rem;
@@ -175,13 +175,13 @@ button:hover {
 }
 
 .pet-image-container:hover .pet-info-user {
-    display: block; /* Show on hover */
+    display: block;
 }
 
 #pets-container {
     display: flex;
-    flex-direction: column; /* Muestra los elementos en columna */
-    gap: 10px; /* Espacio entre cada mascota */
+    flex-direction: column;
+    gap: 10px;
     padding: 10px;
     width: 100%;
     background-color: #1e1e2f;
@@ -190,12 +190,12 @@ button:hover {
 .pet-container {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espacio entre la imagen y la información */
-    background-color: #292b3e; /* Fondo oscuro */
+    gap: 10px;
+    background-color: #292b3e;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #5dfb5d;
-    box-shadow: 0 2px 4px rgba(157, 0, 255, 0.4); /* Sombra para efecto visual */
+    box-shadow: 0 2px 4px rgba(157, 0, 255, 0.4);
 }
 
 .pet-info {

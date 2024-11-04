@@ -1,26 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('login-form');
+
     const registerForm = document.getElementById('register-form');
+
     const showRegisterForm = document.getElementById('show-register-form');
+
     const showLoginForm = document.getElementById('show-login-form');
+
     const mainContent = document.getElementById('main-content');
+
     const userOptions = document.getElementById('user-options');
+
     const petDisplay = document.getElementById('pet-display');
 
+
     const createPetForm = document.getElementById('createPetForm');
+
     const logoutBtn = document.getElementById('logout-btn');
+
     const createPetBtn = document.getElementById('create-pet-btn');
+
     const cancelCreatePetBtn = document.getElementById('cancel-create-pet-btn');
+
     const createPetFormContainer = document.getElementById('create-pet-form');
 
+
     const myPetsButton = document.getElementById('my-pets-btn');
+
     const allPetsButton = document.getElementById('all-pets-btn');
+
     const petsContainer = document.getElementById('pets-container');
 
+
     const deletePetForm = document.getElementById('delete-pet-form');
+
     const deletePetButton = document.getElementById('delete-pet-button');
+
     const deletePetOption = document.getElementById('delete-pet-option');
+
     const cancelDeletePetBtn = document.getElementById('cancel-delete-pet-btn');
+
 
     let userRole;
 
@@ -33,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         registerForm.style.display = 'none';
         loginForm.style.display = 'block';
 
-        // Limpiar campos de usuario y contraseña al mostrar el formulario de login
             document.getElementById('login-username').value = '';
             document.getElementById('login-password').value = '';
     });
@@ -45,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         petsContainer.innerHTML = '';
         localStorage.removeItem('token');
 
-        // Limpiar campos de usuario y contraseña al cerrar sesión
+
             document.getElementById('login-username').value = '';
             document.getElementById('login-password').value = '';
     });
@@ -70,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         mainContent.style.display = 'block';
     });
 
-   // Actualización en el formulario de login
+
    loginForm.addEventListener('submit', function(event) {
        event.preventDefault();
        const username = document.getElementById('login-username').value.toLowerCase(); // Convertir a minúsculas
@@ -82,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                'Content-Type': 'application/json',
            },
            body: JSON.stringify({
-               userName: username, // Nombre de usuario en minúsculas
+               userName: username,
                userPassword: password,
            }),
        })
@@ -95,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
        .then(token => {
            localStorage.setItem('token', token);
 
-           // Solicitar el rol del usuario
+
            return fetch('/virtualpet/role', {
                method: 'GET',
                headers: {
@@ -153,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Create Pet
+
     createPetForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
@@ -184,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Get pets (USER)
+
     myPetsButton.addEventListener('click', async () => {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -208,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // All pets (ADMIN)
+
     allPetsButton.addEventListener('click', async () => {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -236,13 +254,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function displayPets(pets) {
     const petDisplay = document.getElementById('pet-display');
     petDisplay.style.display = 'block';
-    petDisplay.innerHTML = ''; // Limpia el contenido previo
+    petDisplay.innerHTML = '';
 
     pets.forEach(pet => {
         const petImageContainer = document.createElement('div');
         petImageContainer.classList.add('pet-image-container');
 
-        // Imagen de la mascota viva con ruta específica
+
         const petImage = document.createElement('img');
         petImage.src = `images/${pet.breed}_${pet.color}.png`;
         petImage.classList.add('pet-image');
@@ -266,7 +284,7 @@ function displayPets(pets) {
             <p>Limpieza: ${pet.cleanliness}</p>
         `;
 
-        // Eventos para mostrar/ocultar la información de la mascota
+
         petImageContainer.addEventListener('mouseover', () => {
             petInfo.style.display = 'block';
         });
@@ -275,18 +293,15 @@ function displayPets(pets) {
             petInfo.style.display = 'none';
         });
 
-        // Agregar solo la imagen correspondiente según la salud
-        petImageContainer.appendChild(petImage);   // Imagen de mascota viva
-        petImageContainer.appendChild(deathImage); // Imagen de muerte
+
+        petImageContainer.appendChild(petImage);
+        petImageContainer.appendChild(deathImage);
         petImageContainer.appendChild(petInfo);
         petDisplay.appendChild(petImageContainer);
     });
 }
 
 
-
-
-    // Delete a pet
     deletePetButton.addEventListener('click', async () => {
         const token = localStorage.getItem('token');
         const petId = document.getElementById('delete-pet-id').value;
@@ -353,11 +368,11 @@ function displayPets(pets) {
         updateColor.style.display = 'none';
 
         switch (selectedField) {
-            case 'change_name':
-                updateValue.style.display = 'block';
-                break;
             case 'change_breed':
                 updateBreed.style.display = 'block';
+                break;
+            case 'change_name':
+                updateValue.style.display = 'block';
                 break;
             case 'change_color':
                 updateColor.style.display = 'block';
@@ -382,11 +397,11 @@ function displayPets(pets) {
         }
 
         switch (selectedField) {
-            case 'change_name':
-                updateValueContent = updateValue.value;
-                break;
             case 'change_breed':
                 updateValueContent = updateBreed.value;
+                break;
+            case 'change_name':
+                updateValueContent = updateValue.value;
                 break;
             case 'change_color':
                 updateValueContent = updateColor.value;
@@ -429,6 +444,7 @@ function displayPets(pets) {
     const actionPetButton = document.getElementById('action-pet-button');
     const interactPetOption = document.getElementById('interact-pet-option');
     const cancelActionPetBtn = document.getElementById('cancel-action-pet-btn');
+
 
     interactPetOption.addEventListener('click', () => {
         mainContent.style.display = 'none';

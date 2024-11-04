@@ -1,9 +1,7 @@
 package com.virtualpet.vpet.VPet.service;
 
-
 import com.virtualpet.vpet.VPet.exception.UserNotFoundException;
 import com.virtualpet.vpet.VPet.model.Companion;
-
 import com.virtualpet.vpet.VPet.model.User;
 import com.virtualpet.vpet.VPet.repository.mysql.PersonRepository;
 import com.virtualpet.vpet.VPet.repository.mysql.PetRepository;
@@ -14,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,20 +42,18 @@ public class PersonService {
         if (authentication.isAuthenticated()) {
             return jwtService.generateToken(userName, user.getUserRole());
         } else {
-            return "fail";
+            return "fallo";
         }
     }
 
     public User createUser(String name, String password, String role) {
-        // Normalizar el nombre de usuario a minúsculas para evitar problemas de duplicados
         name = name.toLowerCase();
 
-        // Verificar si el usuario ya existe
+
         if (personRepository.findByUserName(name) != null) {
-            throw new IllegalStateException("User already exists with username: " + name);
+            throw new IllegalStateException("Este usuario ya existe con el nombre de: " + name);
         }
 
-        // Crear nuevo usuario y establecer su información
         User user = new User();
         userInfo(user, name, password, role);
         return personRepository.save(user);
@@ -80,14 +75,10 @@ public class PersonService {
         return petRepository.findAll();
     }
 
-    public boolean isAdmin(Long userId) {
-        User user = findUser(userId);
-        return user.getUserRole().equals("ADMIN");
-    }
 
     public void deleteUser(Long userId) {
         User user = personRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado con ID: " + userId));
         personRepository.delete(user);
     }
 
@@ -109,7 +100,6 @@ public class PersonService {
         User user = personRepository.findByUserName(userName);
         return user.getUserRole();
     }
-
 
 
     public boolean isAdmin(String userName) {
