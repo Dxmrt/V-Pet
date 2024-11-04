@@ -20,13 +20,13 @@ Note: MongoDB integration is planned for future updates to support additional fe
 
 🌈 Interface
 
-### Login Interface
+#### Login Interface
 ![Login Interface](https://github.com/Dxmrt/Vpet/raw/master/src/main/java/com/virtualpet/vpet/VPet/images_git/loginvpet.png)
 
-### Registration Interface
+#### Registration Interface
 ![Registration Interface](https://github.com/Dxmrt/Vpet/raw/master/src/main/java/com/virtualpet/vpet/VPet/images_git/registervpet.png)
 
-### Pet Status: Health Zero (Death Icon):
+#### Pet Status: Health Zero (Death Icon):
 ![Pet Death Icon](https://github.com/Dxmrt/Vpet/raw/master/src/main/java/com/virtualpet/vpet/VPet/images_git/gambitamuerta.png)
 
 
