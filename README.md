@@ -76,6 +76,42 @@ How to Use the Postman Collection:
         - jwt_token: This will hold your JWT token after login to authenticate requests.
         
        * After logging in, copy the JWT token from the login response and paste it into the jwt_token environment variable to access protected endpoints.*
+       
+
+## 📄 Database Setup
+
+To set up the MySQL database for the Virtual Pet API, you can use the following SQL script.
+
+```sql
+-- Create the 'virtualfpet' database
+CREATE DATABASE IF NOT EXISTS virtualfpet;
+
+-- Use the 'virtualfpet' database
+USE virtualfpet;
+
+-- Table to store users
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL UNIQUE,  -- The username must be unique
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL,              -- Field for the role (e.g., ADMIN, USER)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table to store pets
+CREATE TABLE pets (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    owner_id BIGINT,
+    hunger INT DEFAULT 100,
+    cleanliness INT DEFAULT 100,
+    happiness INT DEFAULT 100,
+    energy INT DEFAULT 100,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
         
 
 ## 🛠️ Running the Project
